@@ -1,4 +1,4 @@
-import { StyleSheet, Platform, Dimensions} from 'react-native';
+import { StyleSheet} from 'react-native';
 import {scale,  verticalScale } from '@utils/scale';
 import * as CONST from '@constants/colors';
 

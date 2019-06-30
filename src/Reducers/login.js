@@ -12,11 +12,13 @@ export default function(state = initialState, action){
 			return {
 				...state,
 				loginError: CONST.NO_ERROR,
+				loginSuccess: false,
 				}
 		case CONST.LOGIN_SUCCESS:
 			return {
 				...state,
 				loginSuccess: true,
+				loginError: CONST.NO_ERROR
 			}
 		case CONST.LOGIN_FAILED:
 			return {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, SafeAreaView, Platform, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, SafeAreaView, Text, TextInput, TouchableOpacity, ActivityIndicator} from 'react-native';
 import styles from './style';
 import {LOGIN_HEADING, SMALL_HEADING} from '@constants/string'
 import Validator from '@utils/validator';
@@ -55,11 +55,12 @@ class LoginComponent extends Component{
                                 password: text
                             })} />
                         <TouchableOpacity style={styles.loginButton} onPress={()=>this.onLoginPress()}>
-                            <Text style={styles.loginButtonText}>LOGIN</Text>
+                            {this.props.isFetching ? <ActivityIndicator size='small' animating={this.props.isFetching} color={CONST.WHITE_COLOR} /> :
+                                <Text style={styles.loginButtonText}>LOGIN</Text>
+                            }
                         </TouchableOpacity>
                     </View>
-                    
-                </View>
+                 </View>
             </SafeAreaView>
         )
     }
