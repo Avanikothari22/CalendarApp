@@ -8,24 +8,6 @@ class CalendarContainer extends Component{
         super(props);
     }
 
-    componentWillReceiveProps(nextProps){
-        const isFocused = this.props.navigation.isFocused();
-        if(isFocused){
-            if(this.props.success!== nextProps.success && nextProps.success){
-                Alert.alert(`Login successful.`,'',[{
-                    text: 'OK', onPress: () => this.handleSuccess()
-                }], {cancelable: false});
-            }
-        if(this.props.error!== nextProps.error && nextProps.error!== CONST.NO_ERROR){
-            alert(nextProps.error)
-        }
-    }
-}
- 
-    handleSuccess(){
-        this.props.navigation.dispatch(resetAction('CalendarScreen'))
-    }
-
     render(){
         return(
             <View style={{flex:1}}>
