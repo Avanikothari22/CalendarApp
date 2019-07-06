@@ -18,12 +18,13 @@ class LoginComponent extends Component{
     }
 
     onLoginPress(){
-        if(Validator.validEmail(this.state.email))
+        if(!Validator.validEmail(this.state.email)){
+            this.setState({
+                emailError: true
+            })
+            return;
+        }
         this.props.onLoginPress(this.state.email, this.state.password);
-        else
-        this.setState({
-            emailError: true
-        })
     }
 
     render(){

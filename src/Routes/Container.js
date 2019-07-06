@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import {View, Alert} from 'react-native';
+import { View, Alert } from 'react-native';
+import { resetAction } from '../../../AppNavigator';
 import { connect } from 'react-redux';
+import { loginUser } from '@actions/login';
 import * as CONST from '@constants/actions';
-import CalendarComponent from '../CalendarComponent'
-class CalendarContainer extends Component{
+import LoginComponent from '../LoginComponent'
+class LoginContainer extends Component{
     constructor(props){
         super(props);
 
@@ -30,17 +32,20 @@ class CalendarContainer extends Component{
     render(){
         return(
             <View style={{flex:1}}>
-                <CalendarComponent/>
+                <LoginComponent 
+                isFetching={this.props.isFetching}
+                onLoginPress={(email, password)=>this.props.onLoginPress(email, password)} />
             </View>
         )
     }
 }
 
-function mapStateToProps(state){
-	const { login } = state;
+const  mapStateToProps = (state) => {
+	const { login, commonReducer } = state;
 	return {
 		error: login.loginError,
-		success: login.loginSuccess,
+        success: login.loginSuccess,
+        isFetching: commonReducer.isFetching
 	};
 }
 
@@ -52,4 +57,4 @@ const mapDispatchToProps = (dispatch) => {
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CalendarContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

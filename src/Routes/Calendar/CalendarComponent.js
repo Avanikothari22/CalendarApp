@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, SafeAreaView, Image, TouchableOpacity, Modal, Text, TextInput, } from 'react-native';
+import { View, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import styles from './style';
 import { Calendar } from 'react-native-calendars';
+import Modal from '@components/Modal';
 import { add_icon } from '@constants/assets';
 const _today = new Date().toISOString().substring(0, 10);
 
@@ -22,56 +23,6 @@ class CalendarComponent extends Component {
 
         // Triggers component to render again, picking up the new state
         this.setState({ markedDates: updatedMarkedDates });
-    }
-
-    renderModal() {
-        return (
-            <View style={styles.modalContainer} onPress={() => this.setState({ showModal: false })}>
-                <View style={styles.modalBoxContainer}>
-                    <View style={styles.modalHeadingContainer}>
-                        <Text>Add a Task</Text>
-                    </View>
-                    <View style={styles.modalContentContainer}>
-                        <TextInput style={styles.textInput}
-                            placeholder={'Title'}
-                            autoCapitalize={false}
-                            value={this.state.email}
-                            onChangeText={(text) => this.setState({
-                                title: text,
-                            })} />
-                        <TextInput style={styles.textInput}
-                            placeholder={'Description'}
-                            autoCapitalize={false}
-                            value={this.state.email}
-                            onChangeText={(text) => this.setState({
-                                desc: text,
-                            })} />
-                        <View style={styles.modalButtonContainer}>
-                            <TouchableOpacity style={styles.loginButton} onPress={() => this.setState({ showModal: false })}>
-                                <Text style={styles.loginButtonText}>Cancel</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.loginButton} onPress={() => this.addTask()}>
-                                <Text style={styles.loginButtonText}>Add task</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
-            </View>
-        )
-    }
-
-    addTask() {
-        const { title, desc } = this.state;
-        if (title !== '' && desc !== '') {
-            this.setState({
-                showModal: false,
-                title: '',
-                desc: ''
-            }, () => { alert('Task added!') })
-
-        } else {
-            alert('Please add title and description.')
-        }
     }
 
     renderCalendarView() {
@@ -124,7 +75,7 @@ class CalendarComponent extends Component {
                         <Image source={add_icon} style={{ width: 50, height: 50 }} />
                     </TouchableOpacity>
                 </View>
-                {this.state.showModal && this.renderModal()}
+                {this.state.showModal && <Modal addTask={()=>this.addTask()} modalTitle={'Add a Task'} cancelModal={()=>this.setState({showModal:false})}/>}
             </SafeAreaView>
         )
     }

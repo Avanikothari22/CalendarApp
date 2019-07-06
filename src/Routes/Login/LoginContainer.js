@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {View, SafeAreaView, Platform, Alert} from 'react-native';
-import { resetAction } from '../../../AppNavigator';
+import { View, Alert } from 'react-native';
+import { resetAction } from '../../AppNavigator';
 import { connect } from 'react-redux';
-import {loginUser} from '@actions/login';
+import { loginUser } from '@actions/login';
 import * as CONST from '@constants/actions';
-import LoginComponent from '../LoginComponent'
+import LoginComponent from './LoginComponent'
 class LoginContainer extends Component{
     constructor(props){
         super(props);
@@ -40,7 +40,7 @@ class LoginContainer extends Component{
     }
 }
 
-function mapStateToProps(state){
+const  mapStateToProps = (state) => {
 	const { login, commonReducer } = state;
 	return {
 		error: login.loginError,

@@ -1,5 +1,5 @@
+
 import {createStackNavigator,createAppContainer, NavigationActions, StackActions} from 'react-navigation';
-import {Platform} from 'react-native';
 import Login from './Routes/Login/LoginContainer';
 import Calendar from './Routes/Calendar/CalendarContainer';
  const RootStack = createStackNavigator({
