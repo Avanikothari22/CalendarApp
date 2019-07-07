@@ -25,7 +25,6 @@ export function loginUser(email, password) {
             });
         } catch (error) {
             dispatch(stopSpinner());
-
             dispatch({
                 type: CONST.LOGIN_FAILED,
                 payload: { error: error }

@@ -75,7 +75,7 @@ class CalendarComponent extends Component {
                         <Image source={add_icon} style={{ width: 50, height: 50 }} />
                     </TouchableOpacity>
                 </View>
-                {this.state.showModal && <Modal addTask={()=>this.addTask()} modalTitle={'Add a Task'} cancelModal={()=>this.setState({showModal:false})}/>}
+                {this.state.showModal && <Modal modalTitle={'Add a Task'} cancelModal={()=>this.setState({showModal:false})}/>}
             </SafeAreaView>
         )
     }
