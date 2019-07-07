@@ -30,7 +30,7 @@ export default (WrappedComponent, mapStateToProps = null, mapDispatchToProps = n
     
         render(){
             return(
-                <WrappedComponent {...sameData} {...this.props} />
+                <WrappedComponent {...this.props} />
             )
         }
     }
